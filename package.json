@@ -1,0 +1,46 @@
+{
+  "name": "korandoran-timer",
+  "version": "1.0.0",
+  "main": "main.js",
+  "description": "고려대학교 중앙토론동아리 고란도란 전용 토론 타이머",
+  "author": {
+    "name": "이재빈",
+    "email": "ljb09670967@korea.ac.kr"
+  },
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "korandoran_timer",
+            "authors": "고란도란 개발팀",
+            "description": "고려대학교 중앙토론동아리 고란도란 전용 토론 타이머"
+          }
+        }
+      ]
+    }
+  },
+  "keywords": [],
+  "license": "ISC",
+  "devDependencies": {
+    "@electron-forge/cli": "^7.8.1",
+    "@electron-forge/maker-deb": "^7.8.1",
+    "@electron-forge/maker-rpm": "^7.8.1",
+    "@electron-forge/maker-squirrel": "^7.8.1",
+    "@electron-forge/maker-zip": "^7.8.1",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.8.1",
+    "@electron-forge/plugin-fuses": "^7.8.1",
+    "@electron/fuses": "^1.8.0",
+    "electron": "^36.2.0"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1"
+  }
+}

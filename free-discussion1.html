@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자유토론 1부 - 고란도란</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "NanumMyeongjo", sans-serif;
+        background-color: #eee7e2;
+      }
+
+      .right-progress-bg {
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 150px;
+        height: 100vh;
+        background: #c30c0c;
+        z-index: 1000;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .right-progress-half {
+        position: relative;
+        width: 100%;
+        height: 50%;
+        overflow: hidden;
+      }
+
+      .right-progress-half.top {
+        background: #c30c0c;
+        border-bottom: 1px solid #b01a1a;
+      }
+
+      .right-progress-half.bottom {
+        background: #0074d9;
+        border-top: 1px solid #b01a1a;
+      }
+
+      .progress-gradient {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        /* height는 JS에서 동적으로 조절 */
+        background: #eee7e2;
+        transition: height 0.2s linear;
+        z-index: 2;
+        opacity: 1;
+      }
+
+      .free-discussion-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        transform-origin: top center;
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+      }
+
+      .logo-area {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: 800;
+        color: #333;
+        margin: 0;
+      }
+
+      .logo-image {
+        /* 원하시는 크기로 조절 */
+        width: 100px;
+        height: auto;
+
+        /* 텍스트(Subtitle)와 세로 가운데 정렬하려면 */
+        vertical-align: middle;
+        display: inline-block;
+      }
+
+      .subtitle {
+        font-size: 17px;
+        font-weight: 800;
+        color: #c30c0c;
+      }
+
+      .header-line,
+      .footer-line {
+        height: 3px;
+        background-color: #c30c0c;
+        width: 100%;
+      }
+
+      .header-line2 {
+        margin-top: 3px;
+        height: 1px;
+        background-color: #c30c0c;
+        width: 100%;
+      }
+
+      .footer-line2 {
+        margin-bottom: 3px;
+        height: 1px;
+        background-color: #c30c0c;
+        width: 100%;
+      }
+
+      .middle-line1 {
+        margin: 10px auto 0;
+        height: 1px;
+        background-color: #c30c0c;
+        width: 40%;
+      }
+
+      .middle-line2 {
+        margin: 0 auto 0px; /*10*/
+        height: 1px;
+        background-color: #c30c0c;
+        width: 40%;
+      }
+
+      .screen-title {
+        text-align: center;
+        color: #c30c0c;
+        font-size: 32px;
+        margin: 10px 0;
+      }
+
+      .debate-timers {
+        display: flex;
+        justify-content: space-between;
+        margin: 0px 0; /*20*/
+      }
+
+      .timer-section {
+        width: 48%;
+        text-align: center;
+      }
+
+      .timer-section h3 {
+        font-size: 48px;
+        margin-bottom: 15px;
+        color: #333;
+      }
+
+      .main-timer {
+        font-size: 110px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+      }
+
+      .sub-timer {
+        font-size: 92px;
+        font-weight: bold;
+        color: #666;
+        margin-bottom: 15px;
+      }
+
+      .rope-container {
+        position: relative;
+        height: 10px;
+        margin: 20px 0;
+        overflow: hidden;
+      }
+
+      .rope {
+        position: absolute;
+        width: 100%;
+        height: 8px;
+        background-color: #8b4513;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .fire {
+        position: absolute;
+        right: 0;
+        top: -5px;
+        height: 18px;
+        width: 18px;
+        background-color: #ff6b00;
+        border-radius: 50% 50% 50% 0;
+        transform: rotate(-45deg);
+        z-index: 2;
+      }
+
+      .burning .fire {
+        animation: moveFireLeft var(--animation-duration, 360s) linear forwards;
+      }
+
+      @keyframes moveFireLeft {
+        0% {
+          right: 0;
+        }
+        100% {
+          right: 100%;
+        }
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 350px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      button {
+        padding: 10px 25px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 0;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      #next-btn {
+        display: block;
+        width: 100px;
+        margin: 10px auto;
+        padding: 10px;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background-color: #f8f8f8;
+      }
+
+      .vertical-nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 150px;
+        height: 100vh;
+        background-color: #2c3e50;
+        padding: 20px 0;
+        z-index: 1000;
+        overflow-y: auto;
+      }
+
+      .nav-header {
+        color: #ecf0f1;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 10px;
+        border-bottom: 1px solid #34495e;
+      }
+
+      .nav-link {
+        display: block;
+        color: #bdc3c7;
+        text-decoration: none;
+        padding: 12px 20px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        border-left: 3px solid transparent;
+      }
+
+      .nav-link:hover {
+        background-color: #34495e;
+        color: #ecf0f1;
+        border-left-color: #c30c0c;
+      }
+
+      .nav-link.active {
+        background-color: #c30c0c;
+        color: white;
+        border-left-color: #fff;
+      }
+
+      .intro-container {
+        margin-left: 220px; /* 기존 margin: 0 auto; 대신 */
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="vertical-nav">
+      <div class="nav-header">토론 단계</div>
+      <a href="#" data-page="time-settings.html" class="nav-link">시간 설정</a>
+      <a href="#" data-page="entry.html" class="nav-link">입론</a>
+      <a href="#" data-page="cross-examination.html" class="nav-link"
+        >교차조사</a
+      >
+      <a href="#" data-page="free-discussion1.html" class="nav-link"
+        >자유토론 1부</a
+      >
+      <a href="#" data-page="break-time.html" class="nav-link">숙의시간</a>
+      <a href="#" data-page="free-discussion2.html" class="nav-link"
+        >자유토론 2부</a
+      >
+      <a href="#" data-page="conclusion.html" class="nav-link">결론</a>
+    </nav>
+    <div class="free-discussion-container">
+      <header>
+        <div class="logo-area">
+          <img
+            src="korandoran-logo.png"
+            alt="고란도란 로고"
+            class="logo-image"
+          />
+          <span class="subtitle">토론합시다. 토론은 고란도란입니다.</span>
+        </div>
+        <div class="header-line"></div>
+        <div class="header-line2"></div>
+      </header>
+
+      <main>
+        <div class="middle-line1"></div>
+        <h2 class="screen-title">자유토론 1부</h2>
+        <div class="middle-line2"></div>
+
+        <div class="debate-timers">
+          <!-- 찬성 측 -->
+          <div class="timer-section affirm">
+            <h3>찬성</h3>
+            <div class="main-timer" id="affirm-main-timer">06:00</div>
+            <div class="sub-timer" id="affirm-sub-timer">02:00</div>
+            <div class="button-container">
+              <button id="affirm-start">시작</button>
+              <button id="affirm-pause">일시정지</button>
+              <button id="affirm-reset">초기화</button>
+            </div>
+          </div>
+
+          <!-- 반대 측 -->
+          <div class="timer-section oppose">
+            <h3>반대</h3>
+            <div class="main-timer" id="oppose-main-timer">06:00</div>
+            <div class="sub-timer" id="oppose-sub-timer">02:00</div>
+            <div class="button-container">
+              <button id="oppose-start">시작</button>
+              <button id="oppose-pause">일시정지</button>
+              <button id="oppose-reset">초기화</button>
+            </div>
+          </div>
+        </div>
+
+        <button id="next-btn">다음</button>
+      </main>
+
+      <div class="footer-line2"></div>
+      <div class="footer-line"></div>
+    </div>
+    <div class="right-progress-bg">
+      <div class="right-progress-half top">
+        <div class="progress-gradient" id="affirmProgress"></div>
+      </div>
+      <div class="right-progress-half bottom">
+        <div class="progress-gradient" id="opposeProgress"></div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 찬성 측 요소
+        const affirmMainTimer = document.getElementById("affirm-main-timer");
+        const affirmSubTimer = document.getElementById("affirm-sub-timer");
+        const affirmStartBtn = document.getElementById("affirm-start");
+        const affirmPauseBtn = document.getElementById("affirm-pause");
+        const affirmResetBtn = document.getElementById("affirm-reset");
+
+        // 반대 측 요소
+        const opposeMainTimer = document.getElementById("oppose-main-timer");
+        const opposeSubTimer = document.getElementById("oppose-sub-timer");
+        const opposeStartBtn = document.getElementById("oppose-start");
+        const opposePauseBtn = document.getElementById("oppose-pause");
+        const opposeResetBtn = document.getElementById("oppose-reset");
+
+        const affirmProgress = document.getElementById("affirmProgress");
+        const opposeProgress = document.getElementById("opposeProgress");
+
+        // 위쪽(찬성) 진행 바: 위에서 아래로
+        function updateAffirmProgress(remaining, total) {
+          const percent = ((total - remaining) / total) * 100;
+          affirmProgress.style.height = percent + "%";
+          affirmProgress.style.top = ""; // 반드시 초기화
+          affirmProgress.style.bottom = "0";
+        }
+
+        // 아래쪽(반대) 진행 바: 아래에서 위로
+        function updateOpposeProgress(remaining, total) {
+          const percent = ((total - remaining) / total) * 100;
+          opposeProgress.style.height = percent + "%";
+          opposeProgress.style.bottom = ""; // 반드시 초기화
+          opposeProgress.style.top = "0";
+        }
+
+        // 다음 버튼
+        const nextBtn = document.getElementById("next-btn");
+
+        // localStorage에서 자유토론 시간 가져오기 (기본값: 6분)
+        const savedTime = localStorage.getItem("discussion-time");
+        let initialMainMinutes = 6;
+
+        if (savedTime) {
+          initialMainMinutes = parseInt(savedTime);
+          if (isNaN(initialMainMinutes) || initialMainMinutes < 1)
+            initialMainMinutes = 6;
+        }
+
+        // 애니메이션 시간 설정 (초 단위)
+        const animationDuration = initialMainMinutes * 60;
+        document.documentElement.style.setProperty(
+          "--animation-duration",
+          `${animationDuration}s`
+        );
+
+        // 타이머 변수
+        let affirmMainSeconds = initialMainMinutes * 60; // 메인 시간(기본 6분)
+        let affirmSubSeconds = 2 * 60; // 2분
+        let opposeMainSeconds = initialMainMinutes * 60; // 메인 시간(기본 6분)
+        let opposeSubSeconds = 2 * 60; // 2분
+
+        let affirmMainInterval = null;
+        let affirmSubInterval = null;
+        let opposeMainInterval = null;
+        let opposeSubInterval = null;
+        let isAffirmPaused = true;
+        let isOpposePaused = true;
+
+        // 시간을 MM:SS 형식으로 변환하는 함수
+        function formatTime(seconds) {
+          const mins = Math.floor(seconds / 60);
+          const secs = seconds % 60;
+          return `${String(mins).padStart(
+            2,
+            "0"
+          )}:${String(secs).padStart(2, "0")}`;
+        }
+
+        // 찬성 측 타이머 시작 함수
+        function startAffirmTimers() {
+          // 이미 실행 중이면 중복 실행 방지
+          //if (affirmMainInterval || affirmSubInterval) return;
+          if (!isAffirmPaused) return;
+
+          // 1. 반대측 서브 타이머 즉시 초기화
+          pauseOpposeTimers();
+          opposeSubSeconds = Math.min(2 * 60, opposeMainSeconds);
+          opposeSubTimer.textContent = formatTime(opposeSubSeconds);
+          if (opposeSubInterval) {
+            clearInterval(opposeSubInterval);
+            opposeSubInterval = null;
+          }
+
+          isAffirmPaused = false;
+
+          // 버튼 표시 상태 변경
+          affirmStartBtn.style.display = "none";
+          affirmPauseBtn.style.display = "inline-block";
+
+          // 메인 타이머 시작
+          affirmMainInterval = setInterval(() => {
+            if (affirmMainSeconds > 0) {
+              affirmMainSeconds--;
+              affirmMainTimer.textContent = formatTime(affirmMainSeconds);
+              updateAffirmProgress(affirmMainSeconds, initialMainMinutes * 60);
+            } else {
+              // 시간 종료
+              clearAffirmTimers();
+            }
+          }, 1000);
+
+          // 서브 타이머 시작
+          affirmSubInterval = setInterval(() => {
+            if (affirmSubSeconds > 0) {
+              affirmSubSeconds--;
+              affirmSubTimer.textContent = formatTime(affirmSubSeconds);
+            } else {
+              // 서브 타이머 종료 시 메인 타이머도 멈추고 서브 타이머 초기화
+              clearInterval(affirmSubInterval);
+              affirmSubInterval = null;
+              affirmSubTimer.textContent = "00:00";
+            }
+          }, 1000);
+        }
+
+        // 찬성 측 타이머 정지 함수
+        function pauseAffirmTimers() {
+          if (isAffirmPaused) return;
+
+          clearInterval(affirmMainInterval);
+          clearInterval(affirmSubInterval);
+          affirmMainInterval = null;
+          affirmSubInterval = null;
+
+          isAffirmPaused = true;
+
+          // 버튼 표시 상태 변경
+          affirmStartBtn.style.display = "inline-block";
+          affirmPauseBtn.style.display = "none";
+        }
+
+        // 찬성 측 타이머 초기화 함수
+        function resetAffirmTimers() {
+          clearInterval(affirmMainInterval);
+          clearInterval(affirmSubInterval);
+          affirmMainInterval = null;
+          affirmSubInterval = null;
+
+          affirmMainSeconds = initialMainMinutes * 60;
+          affirmSubSeconds = 2 * 60;
+
+          // 3. 화면 표시 초기화
+          affirmMainTimer.textContent = formatTime(affirmMainSeconds);
+          affirmSubTimer.textContent = formatTime(affirmSubSeconds);
+
+          // 4. 버튼 상태 복원
+          affirmStartBtn.style.display = "inline-block";
+          affirmPauseBtn.style.display = "none";
+
+          // 6. 상태 변수
+          isAffirmPaused = true;
+          updateAffirmProgress(
+            initialMainMinutes * 60,
+            initialMainMinutes * 60
+          );
+        }
+
+        // 반대 측 타이머 시작 함수
+        function startOpposeTimers() {
+          // 이미 실행 중이면 중복 실행 방지
+
+          if (!isOpposePaused) return;
+
+          // 1. 찬성측 서브 타이머 즉시 초기화
+          pauseAffirmTimers();
+          affirmSubSeconds = Math.min(2 * 60, affirmMainSeconds);
+          affirmSubTimer.textContent = formatTime(affirmSubSeconds);
+          if (affirmSubInterval) {
+            clearInterval(affirmSubInterval);
+            affirmSubInterval = null;
+          }
+
+          isOpposePaused = false;
+
+          // 버튼 표시 상태 변경
+          opposeStartBtn.style.display = "none";
+          opposePauseBtn.style.display = "inline-block";
+
+          opposeMainInterval = setInterval(() => {
+            if (opposeMainSeconds > 0) {
+              opposeMainSeconds--;
+              opposeMainTimer.textContent = formatTime(opposeMainSeconds);
+              updateOpposeProgress(opposeMainSeconds, initialMainMinutes * 60);
+            } else {
+              // 시간 종료
+              clearOpposeTimers();
+            }
+          }, 1000);
+
+          // 서브 타이머 시작
+          opposeSubInterval = setInterval(() => {
+            if (opposeSubSeconds > 0) {
+              opposeSubSeconds--;
+              opposeSubTimer.textContent = formatTime(opposeSubSeconds);
+            } else {
+              clearInterval(opposeSubInterval);
+              opposeSubInterval = null;
+              opposeSubTimer.textContent = "00:00";
+            }
+          }, 1000);
+        }
+
+        // 반대 측 타이머 정지 함수
+        function pauseOpposeTimers() {
+          if (isOpposePaused) return;
+
+          clearInterval(opposeMainInterval);
+          clearInterval(opposeSubInterval);
+          opposeMainInterval = null;
+          opposeSubInterval = null;
+
+          isOpposePaused = true;
+          // 버튼 표시 상태 변경
+          opposeStartBtn.style.display = "inline-block";
+          opposePauseBtn.style.display = "none";
+        }
+
+        // 반대 측 타이머 초기화 함수
+        function resetOpposeTimers() {
+          clearInterval(opposeMainInterval);
+          clearInterval(opposeSubInterval);
+          opposeMainInterval = null;
+          opposeSubInterval = null;
+
+          opposeMainSeconds = initialMainMinutes * 60;
+          opposeSubSeconds = 2 * 60;
+
+          // 3. 화면 표시 초기화
+          opposeMainTimer.textContent = formatTime(opposeMainSeconds);
+          opposeSubTimer.textContent = formatTime(opposeSubSeconds);
+
+          // 4. 버튼 상태 복원
+          opposeStartBtn.style.display = "inline-block";
+          opposePauseBtn.style.display = "none";
+
+          // 6. 상태 변수
+          isopposePaused = true;
+          updateOpposeProgress(
+            initialMainMinutes * 60,
+            initialMainMinutes * 60
+          );
+        }
+
+        // 이벤트 리스너 등록
+        affirmStartBtn.addEventListener("click", startAffirmTimers);
+        affirmPauseBtn.addEventListener("click", pauseAffirmTimers);
+        affirmResetBtn.addEventListener("click", resetAffirmTimers);
+        opposeStartBtn.addEventListener("click", startOpposeTimers);
+        opposePauseBtn.addEventListener("click", pauseOpposeTimers);
+        opposeResetBtn.addEventListener("click", resetOpposeTimers);
+
+        nextBtn.addEventListener("click", function () {
+          // 모든 타이머 정지
+          resetAffirmTimers();
+          resetOpposeTimers();
+
+          // 다음 화면으로 이동
+          window.electronAPI.navigate("break-time.html");
+        });
+
+        // 초기화 설정
+        affirmMainTimer.textContent = formatTime(affirmMainSeconds);
+        affirmSubTimer.textContent = formatTime(affirmSubSeconds);
+        opposeMainTimer.textContent = formatTime(opposeMainSeconds);
+        opposeSubTimer.textContent = formatTime(opposeSubSeconds);
+
+        affirmPauseBtn.style.display = "none";
+        opposePauseBtn.style.display = "none";
+      });
+
+      const currentPage = window.location.pathname.split("/").pop();
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      navLinks.forEach((link) => {
+        const targetPage = link.getAttribute("data-page");
+        if (currentPage === targetPage) {
+          link.classList.add("active");
+        }
+
+        // 네비게이션 링크 클릭 이벤트
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetPage = this.getAttribute("data-page");
+
+          // 모든 active 클래스 제거
+          navLinks.forEach((l) => l.classList.remove("active"));
+          // 클릭된 링크에 active 클래스 추가
+          this.classList.add("active");
+
+          // 페이지 이동
+          window.electronAPI.navigate(targetPage);
+        });
+      });
+    </script>
+    <script src="renderer.js"></script>
+  </body>
+</html>

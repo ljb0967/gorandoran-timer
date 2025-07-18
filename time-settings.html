@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>시간 설정 - 고란도란</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Nanum Myeongjo ExtraBold", NanumMyeongjo;
+        background-color: #eee7e2;
+      }
+
+      .time-setting-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        transform-origin: top center;
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+      }
+
+      .logo-area {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 24px;
+        font-weight: 800;
+        color: #333;
+        margin: 0;
+      }
+
+      .logo-image {
+        /* 원하시는 크기로 조절 */
+        width: 100px;
+        height: auto;
+
+        /* 텍스트(Subtitle)와 세로 가운데 정렬하려면 */
+        vertical-align: middle;
+        display: inline-block;
+      }
+
+      .subtitle {
+        font-size: 17px;
+        font-weight: 800;
+        color: #c30c0c;
+      }
+
+      .header-line,
+      .footer-line {
+        height: 3px;
+        background-color: #c30c0c;
+        width: 100%;
+      }
+
+      .header-line2 {
+        margin-top: 3px;
+        height: 1px;
+        background-color: #c30c0c;
+        width: 100%;
+      }
+
+      .footer-line2 {
+        margin-bottom: 3px;
+        height: 1px;
+        background-color: #c30c0c;
+        width: 100%;
+      }
+
+      .middle-line1 {
+        margin: 10px auto 0;
+        height: 1px;
+        background-color: #c30c0c;
+        width: 40%;
+      }
+
+      .middle-line2 {
+        margin: 0 auto 10px;
+        height: 1px;
+        background-color: #c30c0c;
+        width: 40%;
+      }
+
+      .screen-title {
+        text-align: center;
+        color: #c30c0c;
+        font-size: 32px;
+        margin: 10px 0;
+      }
+
+      .time-inputs {
+        margin: 30px 0;
+      }
+
+      .time-input-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 36px;
+        font-weight: 800;
+        color: #333;
+      }
+
+      input[type="number"] {
+        width: 80px;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        text-align: center;
+        height: 40px; /* 높이 증가 */
+        font-size: 34px; /* 글자 크기 증가 */
+      }
+
+      .time-unit {
+        margin-left: 5px;
+        font-size: 34px; /* "분" 글자 크기 증가 */
+      }
+
+      .next-button {
+        display: block;
+        width: 100px;
+        margin: 30px auto;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 0;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .next-button:hover {
+        background-color: #f8f8f8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="time-setting-container">
+      <header>
+        <div class="logo-area">
+          <img
+            src="korandoran-logo.png"
+            alt="고란도란 로고"
+            class="logo-image"
+          />
+          <span class="subtitle">토론합시다. 토론은 고란도란입니다.</span>
+        </div>
+        <div class="header-line"></div>
+        <div class="header-line2"></div>
+      </header>
+
+      <main>
+        <div class="middle-line1"></div>
+        <h2 class="screen-title">시간 설정</h2>
+        <div class="middle-line2"></div>
+
+        <div class="time-inputs">
+          <div class="time-input-row">
+            <label for="entry-time">입론:</label>
+            <div>
+              <input
+                type="number"
+                id="entry-time"
+                name="entry-time"
+                value="3"
+                min="1"
+                max="60"
+                class="time-input"
+                required
+              />
+              <span class="time-unit">분</span>
+            </div>
+          </div>
+
+          <div class="time-input-row">
+            <label for="cross-check-time">교차조사:</label>
+            <div>
+              <input
+                type="number"
+                id="cross-check-time"
+                name="cross-check-time"
+                value="3"
+                min="1"
+                max="60"
+                class="time-input"
+                required
+              />
+              <span class="time-unit">분</span>
+            </div>
+          </div>
+
+          <div class="time-input-row">
+            <label for="discussion-time">자유토론:</label>
+            <div>
+              <input
+                type="number"
+                id="discussion-time"
+                name="discussion-time"
+                value="6"
+                min="1"
+                max="60"
+                class="time-input"
+                required
+              />
+              <span class="time-unit">분</span>
+            </div>
+          </div>
+
+          <div class="time-input-row">
+            <label for="conclusion-time">결론:</label>
+            <div>
+              <input
+                type="number"
+                id="conclusion-time"
+                name="conclusion-time"
+                value="2"
+                min="1"
+                max="60"
+                class="time-input"
+                required
+              />
+              <span class="time-unit">분</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="next-button">다음</button>
+      </main>
+
+      <div class="footer-line2"></div>
+      <div class="footer-line"></div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 모든 시간 입력 요소 가져오기
+        const timeInputs = document.querySelectorAll(".time-input");
+
+        // 각 input에 이벤트 리스너 추가
+        timeInputs.forEach((input) => {
+          input.addEventListener("change", function (event) {
+            // 입력값이 범위를 벗어나면 조정
+            let minutes = parseInt(event.target.value);
+            if (isNaN(minutes) || minutes < 1) minutes = 1;
+            if (minutes > 60) minutes = 60;
+            event.target.value = minutes;
+
+            // 저장 (분 단위로)
+            localStorage.setItem(event.target.name, minutes);
+            console.log(`${event.target.name}: ${minutes}분 설정됨`);
+          });
+
+          // 저장된 값이 있으면 불러오기
+          const savedValue = localStorage.getItem(input.name);
+          if (savedValue) {
+            input.value = savedValue;
+          }
+        });
+
+        // 다음 버튼 이벤트 리스너
+        const nextButton = document.querySelector(".next-button");
+        nextButton.addEventListener("click", function () {
+          // 모든 시간 값 수집 및 저장
+          timeInputs.forEach((input) => {
+            const minutes = parseInt(input.value);
+            if (!isNaN(minutes)) {
+              localStorage.setItem(input.name, minutes);
+            }
+          });
+
+          // 다음 화면(입론)으로 이동
+          window.electronAPI.navigate("entry.html");
+        });
+      });
+    </script>
+    <script src="renderer.js"></script>
+  </body>
+</html>
