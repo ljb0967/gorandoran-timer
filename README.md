@@ -14,7 +14,8 @@ https://hangeul.naver.com/fonts/search?f=nanum
 
 (2) 다운로드 받은 폴더를 압축해제 하고 아래와 같이 6개의 .otf, .ttf 파일을 클릭하고 설치 버튼을 누릅니다.
 
-![image.png](attachment:3fc084af-bc26-46b9-bdf1-130b12c7b1cd:image.png)
+<img width="841" height="597" alt="image (1)" src="https://github.com/user-attachments/assets/417c7099-bebe-41ee-b362-f622666c2cc1" />
+
 
 2. 파일 압축 해제 후 exe 파일 실행
 
