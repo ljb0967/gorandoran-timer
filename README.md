@@ -19,13 +19,15 @@ https://hangeul.naver.com/fonts/search?f=nanum
 
 2. 파일 압축 해제 후 exe 파일 실행
 
-![image.png](attachment:c740d218-9e6f-4f6c-a9d7-0f34685c968f:image.png)
+<img width="844" height="528" alt="image (2)" src="https://github.com/user-attachments/assets/2d5ffcfb-dc3a-4efc-8f00-e70c00222922" />
 
- 3. [시간 설정]
+
+3. [시간 설정]
 - 타이머를 실행했을 때 나오는 첫 화면으로 토론의 각 단계들의 시간을 설정할 수 있습니다.
 - 분 단위로 설정 가능합니다.
 
-![image.png](attachment:f619a0a8-3e26-416d-b4bb-7ab0f1a3ca79:image.png)
+<img width="1920" height="1041" alt="image (3)" src="https://github.com/user-attachments/assets/8a86100b-fb83-43a1-ae14-140529c256dd" />
+
 
 4. [입론]
 - 시작: 타이머가 작동되고 시작 버튼이 일시정지 버튼으로 바뀝니다.
@@ -36,7 +38,8 @@ https://hangeul.naver.com/fonts/search?f=nanum
 - 오른쪽의 진행 바: [입론] 단계의 남은 시간의 정도를 나타냅니다.
 - 참고) 타이머 시간이 다 끝나면 자동으로 다시 처음 상태로 돌아옵니다.
 
-![image.png](attachment:b343768e-7a1e-4762-9f12-8e392ab94b77:image.png)
+<img width="1920" height="1040" alt="image (4)" src="https://github.com/user-attachments/assets/93136e1b-c009-4b40-b365-1200e5a8081d" />
+
 
 5. [교차조사]
 - 시작: 타이머가 작동되고 시작 버튼이 일시정지 버튼으로 바뀝니다.
@@ -47,7 +50,8 @@ https://hangeul.naver.com/fonts/search?f=nanum
 - 오른쪽의 진행 바: [교차조사] 단계의 남은 시간의 정도를 나타냅니다.
 - 참고) 타이머 시간이 다 끝나면 자동으로 다시 처음 상태로 돌아옵니다.
 
-![image.png](attachment:278a702d-ea18-43dc-941e-01e94aad49a6:image.png)
+<img width="1920" height="1039" alt="image (5)" src="https://github.com/user-attachments/assets/69df3fbb-0dae-45e8-9ac1-471e0b31722e" />
+
 
 6. [자유토론 1부]
 - 참고) 찬성 측과 반대 측의 메인/서브 타이머가 독립적으로 작동합니다.
@@ -61,7 +65,8 @@ https://hangeul.naver.com/fonts/search?f=nanum
 - 왼쪽 메뉴:  다른 단계로 이동 가능합니다.
 - 오른쪽의 진행 바: [자유토론 1부] 단계의 남은 시간의 정도를 나타냅니다. 위쪽의 빨간 막대는 찬성 측의 남은 시간을, 아래쪽의 파란 막대는 반대 측의 남은 시간을 의미합니다.
 
-![image.png](attachment:a1290716-f92b-4b8e-87dc-57e9ed298c1a:image.png)
+<img width="1920" height="1038" alt="image (6)" src="https://github.com/user-attachments/assets/c1aa4b95-7b10-4fc4-8d36-e6f8ae63d92f" />
+
 
 7. [숙의시간]
 - 시작: 타이머가 작동되고 시작 버튼이 일시정지 버튼으로 바뀝니다.
@@ -72,7 +77,8 @@ https://hangeul.naver.com/fonts/search?f=nanum
 - 오른쪽의 진행 바: [숙의시간] 단계의 남은 시간의 정도를 나타냅니다.
 - 참고) 타이머 시간이 다 끝나면 자동으로 다시 처음 상태로 돌아옵니다.
 
-![image.png](attachment:82df4e0b-c43a-430c-870d-9004b2196c12:image.png)
+<img width="1920" height="1039" alt="image (7)" src="https://github.com/user-attachments/assets/bf3e6199-e7b5-45fa-86e7-9955dec981f3" />
+
 
 8. [자유토론 2부]
 - 참고) 찬성 측과 반대 측의 메인/서브 타이머가 독립적으로 작동합니다.
@@ -86,7 +92,8 @@ https://hangeul.naver.com/fonts/search?f=nanum
 - 왼쪽 메뉴:  다른 단계로 이동 가능합니다.
 - 오른쪽의 진행 바: [자유토론 2부] 단계의 남은 시간의 정도를 나타냅니다. 위쪽의 빨간 막대는 찬성 측의 남은 시간을, 아래쪽의 파란 막대는 반대 측의 남은 시간을 의미합니다.
 
-![image.png](attachment:847b6ad6-cdec-42d2-a373-41c3d7d1de19:image.png)
+<img width="1920" height="1036" alt="image (8)" src="https://github.com/user-attachments/assets/78f9c03f-be8b-498a-b44b-657cc4c049dc" />
+
 
 9. [결론]
 - 시작: 타이머가 작동되고 시작 버튼이 일시정지 버튼으로 바뀝니다.
@@ -97,4 +104,5 @@ https://hangeul.naver.com/fonts/search?f=nanum
 - 오른쪽의 진행 바: [결론] 단계의 남은 시간의 정도를 나타냅니다.
 - 참고) 타이머 시간이 다 끝나면 자동으로 다시 처음 상태로 돌아옵니다.
 
-![image.png](attachment:e770c95b-1725-4e47-99a6-269018342cde:image.png)
+<img width="1920" height="1039" alt="image (9)" src="https://github.com/user-attachments/assets/f99c26e8-ece8-49f9-ba9c-5a329d97e248" />
+
